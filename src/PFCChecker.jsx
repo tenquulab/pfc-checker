@@ -70,7 +70,7 @@ export default function PFCChecker() {
           <p>🍗 たんぱく質: {result.p} g</p>
           <p>🧈 脂質: {result.f} g</p>
           <p>🍞 炭水化物: {result.c} g</p>
-          <div className="h-64 mt-4">
+          <div style={{ height: 300, marginTop: "1rem" }}>
             <ResponsiveContainer>
               <PieChart>
                 <Pie data={dataForChart} dataKey="value" nameKey="name" outerRadius={100} label>

@@ -1,6 +1,16 @@
-
 import { useState } from "react";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid
+} from "recharts";
 
 const COLORS = ["#00C49F", "#FF8042", "#0088FE"];
 
@@ -42,6 +52,15 @@ export default function PFCChecker() {
       ]
     : [];
 
+  const scatterData = result
+    ? [
+        {
+          p: result.p,
+          f: result.f,
+        },
+      ]
+    : [];
+
   return (
     <div className="max-w-xl mx-auto p-4 space-y-6">
       <h1 className="text-2xl font-bold">🍳 PFC密度チェッカー</h1>
@@ -80,6 +99,18 @@ export default function PFCChecker() {
                 </Pie>
                 <Tooltip />
               </PieChart>
+            </ResponsiveContainer>
+          </div>
+          <div style={{ height: 300, marginTop: "2rem" }}>
+            <h2 className="text-lg font-bold mb-2">🗺 栄養密度マップ</h2>
+            <ResponsiveContainer>
+              <ScatterChart margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
+                <CartesianGrid />
+                <XAxis type="number" dataKey="p" name="たんぱく質密度" unit="g" />
+                <YAxis type="number" dataKey="f" name="脂質密度" unit="g" />
+                <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                <Scatter name="この食材" data={scatterData} fill="#8884d8" />
+              </ScatterChart>
             </ResponsiveContainer>
           </div>
         </div>
